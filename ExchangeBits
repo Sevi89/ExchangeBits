@@ -1,0 +1,139 @@
+//Write a program that exchanges bits 3, 4 and 5 with bits 24, 25 and 26 of given 32-bit unsigned integer.
+
+
+using System;
+class ExchangeBits
+{
+    static void Main()
+    {
+        Console.Write("Write number for example 268434432: ");
+        int num = int.Parse(Console.ReadLine());
+        Console.Write("This number represent in Binari = ");
+        Console.WriteLine(Convert.ToString(num, 2));
+        Console.WriteLine("Now we will invert the bits of the  number - 3,4,5 with 24,25,26!");
+        //The numbers of the bits
+        int p3 = 3;
+        int p4 = 4;
+        int p5 = 5;
+        int p24 = 24;
+        int p25 = 25;
+        int p26 = 26;
+
+        // This code find the number of the bit
+        int mask3 = 1 << p3;
+        int check3 = num & mask3;
+        int bit3 = check3 >> p3;
+
+        int mask4 = 1 << p4;
+        int check4 = num & mask4;
+        int bit4 = check4 >> p4;
+
+        int mask5 = 1 << p5;
+        int check5 = num & mask5;
+        int bit5 = check4 >> p5;
+
+        int mask24 = 1 << p24;
+        int check24 = num & mask24;
+        int bit24 = check24 >> p24;
+
+        int mask25 = 1 << p25;
+        int check25 = num & mask25;
+        int bit25 = check25 >> p25;
+
+        int mask26 = 1 << p26;
+        int check26 = num & mask26;
+        int bit26 = check26 >> p26;
+
+        int Changing;
+
+         //this code replace bits 3,4,5 to 24,25,26
+        if (bit3 == 1)
+        {
+            int maskReplaceP3 = bit3 << p24;
+            int resultP3One = num | maskReplaceP3;
+            Changing = resultP3One;
+        }
+        else
+        {
+            bit3 = 1;
+            int maskReplaceP3Two = bit3 << p24;
+            int resultP3Two = num ^ maskReplaceP3Two;
+            Changing = resultP3Two;
+        }
+
+        if (bit4 == 1)
+        {
+            int maskReplaceP4 = bit4 << p25;
+            int resultP4One = Changing | maskReplaceP4;
+        }
+        else
+        {
+            bit4 = 1;
+            int maskReplaceP4Two = bit4 << p25;
+            int resultP4Two = Changing ^ maskReplaceP4Two;
+            Changing = resultP4Two;
+        }
+
+        if (bit5 == 1)
+        {
+            int maskReplaceP5 = bit5 << p26;
+            int resultP5One = Changing | maskReplaceP5;
+        }
+        else
+        {
+            bit5 = 1;
+            int maskReplaceP5Two = bit5 << p26;
+            int resultP5Two = Changing ^ maskReplaceP5Two;
+            Changing = resultP5Two;
+        }
+
+        // this code replace bits 24,25,26 with 3,4,5
+        if (bit24 == 1)
+        {
+            int maskReplaceP24 = bit24 << p3;
+            int resultP24One = Changing | maskReplaceP24;
+            Changing = resultP24One;
+        }
+        else
+        {
+            bit24 = 1;
+            int maskReplaceP24Two = bit24 << p3;
+            int resultP24Two = Changing ^ maskReplaceP24Two;
+            Changing = resultP24Two;
+        }
+
+        if (bit25 == 1)
+        {
+            int maskReplaceP25 = bit25 << p4;
+            int resultP25One = Changing | maskReplaceP25;
+            Changing = resultP25One;
+        }
+        else
+        {
+            bit25 = 1;
+            int maskReplaceP25Two = bit25 << p4;
+            int resultP25Two = Changing ^ maskReplaceP25Two;
+            Changing = resultP25Two;
+        }
+
+        if (bit26 == 1)
+        {
+            int maskReplaceP26 = bit26 << p5;
+            int resultP26One = Changing | maskReplaceP26;
+            Changing = resultP26One;
+            Console.Write("With inverted bits the number in Binary is = ");
+            Console.WriteLine(Convert.ToString(Changing, 2));
+            Console.WriteLine("And is equal to: {0}", Changing);
+        }
+        else
+        {
+            bit26 = 1;
+            int maskReplaceP26Two = bit26 << p5;
+            int resultP26Two = Changing ^ maskReplaceP26Two;
+            Changing = resultP26Two;
+            Console.Write("With inverted bits the number in Binary is = ");
+            Console.WriteLine(Convert.ToString(Changing, 2));
+            Console.WriteLine("And is equal to: {0}", Changing);
+        } 
+    }
+}
